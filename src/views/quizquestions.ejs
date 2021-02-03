@@ -1,0 +1,77 @@
+<%- include("partials/header"); -%>
+
+  <!-- show question number -->
+
+  <div class="question-number">
+    <h2>Question <%= questionNumber %></h2>
+  </div>
+
+  <!-- show question -->
+
+  <div class="question">
+    <span class="question-text"> <%= round_questions[questionNumber - 1].question %></span>
+  </div>
+
+  <div class="timer">
+    Time Remaining  <span id="time">:15</span>
+  </div>
+
+
+  <div class="answers">
+  <!-- for each question, go through answer choices and display each as a radio button -->
+    <% for(var i = 0; i < round_questions[questionNumber - 1].answerchoices.length; i++){ %>
+
+    <div class="answer-choice">
+
+<form action="/quizquestionresult/<%= questionNumber %>" method="post">
+
+      <input type="radio" onclick="<% selected_answer = round_questions[questionNumber - 1].answerchoices[i] %>"class="answer-text" name="answerchoice" value="<%= round_questions[questionNumber - 1].answerchoices[i] %>">
+      <label for="<%= round_questions[questionNumber - 1].answerchoices[i] %>"><span class="answer-choice"><%= round_questions[questionNumber - 1].answerchoices[i] %></span></label>
+
+    </div>
+    <br />
+
+    <% } %>
+
+  <div class="submit-button-div">
+
+    <input type="hidden" name="score" value="<%= score %>">
+
+      <button class="submit-button" type="submit" name="button" id="submit-question"><p class="submit-text">Submit Question</p></button>
+
+
+  </div>
+
+</form>
+
+<script>
+  setTimeout(function () {document.getElementById("submit-question").click();}, 16000);
+
+  function startTimer(duration, display) {
+    var timer = duration, minutes, seconds;
+    setInterval(function () {
+        seconds = parseInt(timer % 60, 10);
+
+        seconds = seconds < 10 ? "0" + seconds : seconds;
+
+        display.textContent = ":" + seconds;
+
+        if (--timer < 0) {
+            timer = duration;
+        }
+    }, 1000);
+}
+
+window.onload = function () {
+    var fifteenSec = 15,
+        display = document.querySelector('#time');
+    startTimer(fifteenSec, display);
+};
+
+
+</script>
+
+
+  </div>
+
+<%- include("partials/footer"); -%>

@@ -1,0 +1,41 @@
+<%- include("partials/header"); -%>
+
+<div class="login-register">
+
+  <div class="login-register-title">
+    <h2>Login</h2>
+  </div>
+  <div class="login-form">
+  <div class ="error">
+    <% if(errors !== " ") { %>
+    <%  errors.forEach(function(item) {  %>
+      <div class="error-text">
+        <%- item %>
+      </div>
+    <%  }) %>
+    <% } %>
+    </div>
+  </div>
+
+      <div class="login-form">
+<form id="loginform" action="/login" method="post">
+  <input class="top" type="text" id="username" name="username" required placeholder="Username"/>
+  <input class="bottom" type="password" id="password" name="password" required placeholder="Password">
+
+  <button class="login-button" id="loginbutton" type="submit">Log In</button>
+</form>
+
+        <p>
+          <a class="register-link" href="/register">Register</a>
+          </p>
+          <p>
+            <a class="register-link" href="/">Back to Home</a>
+            </p>
+            <p>
+              Forgot password? <a class="register-link" href="/resetpassword">Reset Password</a>
+
+              </p>
+  </div>
+
+      </div>
+      <%- include("partials/footer"); -%>

@@ -1,0 +1,49 @@
+<%- include("partials/header"); -%>
+
+<div class="login-register">
+
+  <div class="login-register-title">
+    <h2>Register</h2>
+  </div>
+  <div class="registration-form">
+    <div class="error">
+      <% if(errors !== " ") { %>
+      <%  errors.forEach(function(item) {  %>
+        <div class="error-text">
+          <%- item %>
+        </div>
+      <%  }) %>
+      <% } %>
+    </div>
+
+<form class="" action="/register" method="post">
+
+    <input class="top" type="text" id="fname" name="fname" placeholder="First Name" />
+    <input class="middle" type="text" id="username" name="username" placeholder="Username" />
+    <input class="middle" type="email" id="email" name="email" placeholder="Email" />
+    <input class="middle" type="password" id="password" name="password" placeholder="Password">
+    <input class="bottom" type="password" id="passwordConfirmation" name="passwordConfirmation" placeholder="Confirm Password">
+    <p class="pwrules">
+      Your password must contain at least 6 characters, one lowercase letter, one uppercase letter, and one number.
+      </p>
+    <label class="security-question" for="security-questions">Security Question</label>
+    <select class="top-select" id="sec_quest" name="sec_quest">
+      <option value="1">What was your childhood nickname?</option>
+      <option value="2">What street did you live on in third grade?</option>
+      <option value="3">What is your oldest sibling's middle name?</option>
+      <option value="4">What school did you attend for sixth grade?</option>
+      <option value="5">What is your mother's middle name?</option>
+    </select>
+    <input type="text" id="sec_answer" class="bottom" name="sec_answer" placeholder="Answer">
+    <button class="register-button" id="registerform" type="submit" name="button">Register</button>
+    </form>
+  </div>
+
+    <p>
+      <a class="register-link" href="/">Back to Home</a>
+    </p>
+
+</div>
+
+<%- include("partials/footer"); -%>
+<!--  -->
